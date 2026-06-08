@@ -47,6 +47,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     Core/Src/scope.c
     Core/Src/ui.c
     Core/Src/wave.c
+    Core/Src/sandbox.c
     Drivers/ST7735-Cube/Src/st7735.c
     Drivers/ST7735-Cube/Src/gfx.c
 )

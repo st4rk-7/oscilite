@@ -12,6 +12,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "scope.h"
+#include "sandbox.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -101,6 +102,9 @@ int main(void)
 
   // Initialize the oscilloscope (starts the screen, ADC, timers, etc)
   scopeInit();
+  
+  // Initialize our custom sandbox!
+  // sandboxInit(); // <--- Sandbox is currently disabled!
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -108,7 +112,10 @@ int main(void)
   while (1)
   {
     // Run the main oscilloscope update loop continuously
-    scopeLoop();
+    scopeLoop(); 
+    
+    // Run our custom animation loop!
+    // sandboxLoop(); // <--- Sandbox is currently disabled!
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
