@@ -1,10 +1,33 @@
 #include "main.h"
 #include "scope.h"
 #include "ui.h"
+
+
 #include "wave.h"
 #include "splash.h"
 #include "st7735.h"
 #include "gfx.h"
+
+#include <stdarg.h>
+#include <stdio.h>
+
+void LCD_printf(const char *format, ...) {
+    char buffer[64];
+    va_list args;
+    va_start(args, format);
+    vsnprintf(buffer, sizeof(buffer), format, args);
+    va_end(args);
+    
+    // Remove newline if present
+    for(int i=0; i<64; i++) {
+        if(buffer[i] == 0) break;
+        if(buffer[i] == '\n' || buffer[i] == '\r') {
+            buffer[i] = ' ';
+        }
+    }
+    printString(buffer);
+}
+
 #include <stdio.h>
 #include <string.h>
 
@@ -73,13 +96,13 @@ void autoCal()
 
     char st[15];
     printFloat(offsetVoltage, 2, st);
-    printf("Offset voltage: %sV\n", st);
+    LCD_printf("Offset voltage: %sV\n", st);
 
     printFloat(frontendVoltage(0), 2, st);
-    printf("Min input voltage: %sV\n", st);
+    LCD_printf("Min input voltage: %sV\n", st);
 
     printFloat(frontendVoltage(4096), 2, st);
-    printf("Max input voltage: %sV\n", st);
+    LCD_printf("Max input voltage: %sV\n", st);
 
     flushDisplay();
 
@@ -149,7 +172,7 @@ void sideInfo()
     printString("Min:");
     setTextColor(WHITE, BLACK);
     setCursor(MENUPOS, 10);
-    printf("%s\n", st);
+    LCD_printf("%s\n", st);
 
     printFloat(maxVoltage, 1, st);
     setTextColor(BLACK, WHITE);
@@ -157,7 +180,7 @@ void sideInfo()
     printString("Max:");
     setTextColor(WHITE, BLACK);
     setCursor(MENUPOS, 30);
-    printf("%s\n", st);
+    LCD_printf("%s\n", st);
 
     setTextColor(BLACK, WHITE);
     setCursor(MENUPOS, 41);
@@ -165,7 +188,7 @@ void sideInfo()
     setTextColor(WHITE, BLACK);
     setCursor(MENUPOS, 51);
     printFloat(maxVoltage - minVoltage, 1, st);
-    printf("%sV\n", st);
+    LCD_printf("%sV\n", st);
 
     setTextColor(BLACK, WHITE);
     setCursor(MENUPOS, 61);
@@ -176,7 +199,7 @@ void sideInfo()
     if (measuredFreq >= 1000)
     {
         if (measuredFreq >= 100000)
-            printf("%d\n", (int)measuredFreq / 1000);
+            LCD_printf("%d\n", (int)measuredFreq / 1000);
         else
         {
             printFloat(measuredFreq / 1000, 1, st);
@@ -187,7 +210,7 @@ void sideInfo()
     }
     else
     {
-        printf("%d\n", (int)measuredFreq);
+        LCD_printf("%d\n", (int)measuredFreq);
         setCursor(MENUPOS, 81);
         printString("Hz");
     }
@@ -212,20 +235,20 @@ void settingsBar()
         setTextColor(ST7735_RED, BLACK);
     else
         setTextColor(WHITE, BLACK);
-    setCursor(0, 105);
+    setCursor(0, 90);
     printString("Vdiv");
 
     setTextColor(WHITE, BLACK);
-    setCursor(30, 105);
+    setCursor(30, 90);
     printString("Trig");
 
-    setCursor(60, 105);
+    setCursor(60, 90);
     printString("Slope");
 
-    setCursor(95, 105);
+    setCursor(95, 90);
     printString("Atten");
 
-    setCursor(130, 105);
+    setCursor(130, 90);
     if (tdiv < 100)
         printString("us/d");
     else
@@ -243,9 +266,9 @@ void settingsBar()
         setTextColor(ST7735_RED, BLACK);
     else
         setTextColor(WHITE, BLACK);
-    setCursor(0, 115);
+    setCursor(0, 100);
     printFloat(vdiv, 1, st);
-    printf("%sV\n", st);
+    LCD_printf("%sV\n", st);
 
     setTextColor(WHITE, BLACK);
     if (sel == 1)
@@ -253,43 +276,45 @@ void settingsBar()
         setTextColor(BLACK, WHITE);
         drawFastHLine(0, (uint16_t)((PIXDIV * YDIV / 2 - 1) - (trigVoltage * PIXDIV / vdiv)), XDIV * PIXDIV, ST7735_RED);
     }
-    setCursor(30, 115);
+    setCursor(30, 100);
     printFloat(trigVoltage, 1, st);
-    printf("%s\n", st);
+    LCD_printf("%s\n", st);
 
     setTextColor(WHITE, BLACK);
-    setCursor(60, 115);
+    setCursor(60, 100);
     if (sel == 2)
         setTextColor(BLACK, WHITE);
     if (trig == RISING)
-        printf("Rise\n");
+        LCD_printf("Rise\n");
     else
-        printf("Fall\n");
+        LCD_printf("Fall\n");
 
     setTextColor(WHITE, BLACK);
-    setCursor(95, 115);
+    setCursor(95, 100);
     if (sel == 3)
         setTextColor(BLACK, WHITE);
-    printf("%dx\n", atten);
+    LCD_printf("%dx\n", atten);
 
     setTextColor(WHITE, BLACK);
     if (sel == 4)
         setTextColor(BLACK, WHITE);
-    setCursor(130, 115);
+    setCursor(130, 100);
     if (tdiv < 100)
-        printf("%d\n", (int)tdiv);
+        LCD_printf("%d\n", (int)tdiv);
     else if (tdiv < 1000)
-        printf("0.%d\n", (int)tdiv / 100);
+        LCD_printf("0.%d\n", (int)tdiv / 100);
     else
-        printf("%d\n", (int)tdiv / 1000);
+        LCD_printf("%d\n", (int)tdiv / 1000);
 
     // Handle buttons
     if (!HAL_GPIO_ReadPin(BTN1_GPIO_Port, BTN1_Pin))
     {
         if (sel == 0) // volts per div
         {
-            if (vdiv > 0.5)
+            if (vdiv > 1.0)
                 vdiv -= 0.5;
+            else if (vdiv > 0.1)
+                vdiv -= 0.1;
         }
         else if (sel == 1) // trigger level
         {
@@ -326,7 +351,9 @@ void settingsBar()
     {
         if (sel == 0) // vdiv
         {
-            if (vdiv < 9)
+            if (vdiv < 1.0)
+                vdiv += 0.1;
+            else if (vdiv < 9.0)
                 vdiv += 0.5;
         }
         else if (sel == 1) // trigLevel
