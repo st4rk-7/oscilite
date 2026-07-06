@@ -1,0 +1,25 @@
+** Drc report for fullScope.kicad_pcb **
+** Created on 2026-06-18T18:40:17 **
+** Report includes: Errors **
+
+** Found 1 DRC violations **
+[courtyards_overlap]: Courtyards overlap
+    Rule: board setup constraints courtyard; error
+    @(146.0000 mm, 134.0000 mm): Footprint SW3
+    @(146.0000 mm, 124.0000 mm): Footprint SW2
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Silkscreen clearance
+    - Silkscreen clipped by solder mask
+    - PTH inside courtyard
+    - NPTH inside courtyard
+
+** End of Report **

@@ -1,0 +1,113 @@
+** Drc report for fullScope.kicad_pcb **
+** Created on 2026-06-18T18:27:12 **
+** Report includes: Errors, Warnings **
+
+** Found 19 DRC violations **
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(98.5000 mm, 108.0000 mm): PTH pad 1 [BTN1] of SW1
+    @(100.0000 mm, 107.6200 mm): PTH pad 7 [unconnected-(J2-Pin_7-Pad7)] of J2
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(100.0000 mm, 107.6200 mm): PTH pad 7 [unconnected-(J2-Pin_7-Pad7)] of J2
+    @(98.5000 mm, 108.0000 mm): PTH pad 1 [BTN1] of SW1
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(98.5000 mm, 108.0000 mm): PTH pad 1 [BTN1] of SW1
+    @(97.4600 mm, 107.6200 mm): PTH pad 8 [unconnected-(J2-Pin_8-Pad8)] of J2
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(97.4600 mm, 107.6200 mm): PTH pad 8 [unconnected-(J2-Pin_8-Pad8)] of J2
+    @(98.5000 mm, 108.0000 mm): PTH pad 1 [BTN1] of SW1
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(98.5000 mm, 113.0000 mm): PTH pad 2 [GND] of SW1
+    @(97.4600 mm, 112.7000 mm): PTH pad 12 [unconnected-(J2-Pin_12-Pad12)] of J2
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(100.0000 mm, 112.7000 mm): PTH pad 11 [unconnected-(J2-Pin_11-Pad11)] of J2
+    @(98.5000 mm, 113.0000 mm): PTH pad 2 [GND] of SW1
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(98.5000 mm, 113.0000 mm): PTH pad 2 [GND] of SW1
+    @(100.0000 mm, 112.7000 mm): PTH pad 11 [unconnected-(J2-Pin_11-Pad11)] of J2
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(98.5000 mm, 113.0000 mm): PTH pad 2 [GND] of SW1
+    @(97.4600 mm, 112.7000 mm): PTH pad 12 [unconnected-(J2-Pin_12-Pad12)] of J2
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.0000 mm)
+    Rule: board setup constraints; error
+    @(98.5000 mm, 108.0000 mm): PTH pad 1 [BTN1] of SW1
+    @(97.4600 mm, 107.6200 mm): PTH pad 8 [unconnected-(J2-Pin_8-Pad8)] of J2
+[hole_to_hole]: Drilled hole too close to other hole (board setup constraints min 0.2495 mm; actual 0.0000 mm)
+    Rule: board setup constraints; error
+    @(97.4600 mm, 112.7000 mm): PTH pad 12 [unconnected-(J2-Pin_12-Pad12)] of J2
+    @(98.5000 mm, 113.0000 mm): PTH pad 2 [GND] of SW1
+[copper_edge_clearance]: Board edge clearance violation
+    Rule: board setup constraints edge; error
+    @(74.0000 mm, 34.0000 mm): Rectangle on Edge.Cuts
+    @(165.5000 mm, 136.0000 mm): PTH pad 1 [BTN3] of SW3
+[copper_edge_clearance]: Board edge clearance violation
+    Rule: board setup constraints edge; error
+    @(74.0000 mm, 34.0000 mm): Rectangle on Edge.Cuts
+    @(165.5000 mm, 141.0000 mm): PTH pad 2 [GND] of SW3
+[copper_edge_clearance]: Board edge clearance violation
+    Rule: board setup constraints edge; error
+    @(74.0000 mm, 34.0000 mm): Rectangle on Edge.Cuts
+    @(165.5000 mm, 120.0000 mm): PTH pad 1 [BTN2] of SW2
+[copper_edge_clearance]: Board edge clearance violation
+    Rule: board setup constraints edge; error
+    @(74.0000 mm, 34.0000 mm): Rectangle on Edge.Cuts
+    @(165.5000 mm, 125.0000 mm): PTH pad 2 [GND] of SW2
+[courtyards_overlap]: Courtyards overlap
+    Rule: board setup constraints courtyard; error
+    @(86.0000 mm, 108.0000 mm): Footprint SW1
+    @(100.0000 mm, 100.0000 mm): Footprint J2
+[shorting_items]: Items shorting two nets (nets BTN1 and unconnected-(J2-Pin_7-Pad7))
+    Local override; error
+    @(98.5000 mm, 108.0000 mm): PTH pad 1 [BTN1] of SW1
+    @(100.0000 mm, 107.6200 mm): PTH pad 7 [unconnected-(J2-Pin_7-Pad7)] of J2
+[shorting_items]: Items shorting two nets (nets BTN1 and unconnected-(J2-Pin_8-Pad8))
+    Local override; error
+    @(98.5000 mm, 108.0000 mm): PTH pad 1 [BTN1] of SW1
+    @(97.4600 mm, 107.6200 mm): PTH pad 8 [unconnected-(J2-Pin_8-Pad8)] of J2
+[shorting_items]: Items shorting two nets (nets GND and unconnected-(J2-Pin_12-Pad12))
+    Local override; error
+    @(98.5000 mm, 113.0000 mm): PTH pad 2 [GND] of SW1
+    @(97.4600 mm, 112.7000 mm): PTH pad 12 [unconnected-(J2-Pin_12-Pad12)] of J2
+[shorting_items]: Items shorting two nets (nets GND and unconnected-(J2-Pin_11-Pad11))
+    Local override; error
+    @(98.5000 mm, 113.0000 mm): PTH pad 2 [GND] of SW1
+    @(100.0000 mm, 112.7000 mm): PTH pad 11 [unconnected-(J2-Pin_11-Pad11)] of J2
+
+** Found 4 unconnected pads **
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(98.5000 mm, 113.0000 mm): PTH pad 2 [GND] of SW1
+    @(86.0000 mm, 113.0000 mm): PTH pad 2 [GND] of SW1
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(98.5000 mm, 113.0000 mm): PTH pad 2 [GND] of SW1
+    @(100.0000 mm, 138.1000 mm): Track [GND] on B.Cu, length 2.5400 mm
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(100.0000 mm, 100.0000 mm): Track [GND] on F.Cu, length 2.5400 mm
+    @(98.5000 mm, 113.0000 mm): PTH pad 2 [GND] of SW1
+[unconnected_items]: Missing connection between items
+    Local override; error
+    @(98.5000 mm, 108.0000 mm): PTH pad 1 [BTN1] of SW1
+    @(94.5400 mm, 108.0000 mm): Track [BTN1] on B.Cu, length 4.1295 mm
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Silkscreen clearance
+    - Silkscreen clipped by solder mask
+    - PTH inside courtyard
+    - NPTH inside courtyard
+
+** End of Report **

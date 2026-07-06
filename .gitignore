@@ -1,0 +1,25 @@
+# Build output
+build/
+
+# Editor
+.vscode/
+.cache/
+
+# Recovered Claude conversation logs (private — never publish)
+-home-st4rk-Projects-scopef407/
+
+# Large third-party tool (download separately)
+pcb/fullScope/freerouting-2.2.4.jar
+
+# KiCad backups, history and lock files
+pcb/**/*.bak_*
+pcb/**/fullScope-backups/
+pcb/**/.history/
+*~*.lck
+*.kicad_prl
+
+# STM32CubeMX local project settings
+.mxproject
+
+# Claude session data
+.claude/
