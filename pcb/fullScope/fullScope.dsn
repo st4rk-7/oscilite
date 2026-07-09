@@ -3,7 +3,7 @@
     (string_quote ")
     (space_in_quoted_tokens on)
     (host_cad "KiCad's Pcbnew")
-    (host_version "10.0.3")
+    (host_version "10.0.4")
   )
   (resolution um 10)
   (unit um)
@@ -65,7 +65,7 @@
       (place SW4 104000 -66000 front 0 (PN SW_SPDT))
     )
     (component Connector_PinSocket_2.54mm:PinSocket_2x18_P2.54mm_Vertical
-      (place J4 135560 -100000 front 0 (PN Conn_02x18_Odd_Even))
+      (place J4 138100 -100000 front 0 (PN Conn_02x18_Odd_Even))
     )
     (component "Connector_Coaxial:BNC_Amphenol_B6252HB-NPP3G-50_Horizontal"
       (place J1 104000 -50000 front 0 (PN IN))
