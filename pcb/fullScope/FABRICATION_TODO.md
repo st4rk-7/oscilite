@@ -1,15 +1,32 @@
-# ⚠️ VERIFY BEFORE ORDERING — Header Spacing
+# FABRICATION TODO — Header Spacing Fix Required
 
-The Diymore STM32F407VGT6 board (45mm x 60mm) plugs into J2 (2x16) and J4 (2x18).
+## Measured vs. PCB values
 
-## Confirmed (safe to lock in layout)
-- Pin pitch: 2.54 mm (0.1")
-- Row-to-row INSIDE each header: 2.54 mm (standard dual-row)
+| Dimension | PCB file (current) | Measured (real board) | Delta |
+|---|---|---|---|
+| J2↔J4 center-to-center | 35.56 mm | **38.1 mm** | **+2.54 mm (1 pitch)** |
+
+The PCB was laid out one pin pitch too narrow. The board **will not seat** without this fix.
+
+## Fix steps (KiCad GUI, ~10 min)
+
+1. Open `fullScope.kicad_pcb` in KiCad PCB editor.
+2. Select J4 → press `E` → change X from `135.56` to `138.1`. Hit OK.
+3. Reconnect the 15 broken traces (thin white ratsnest lines). Press `X` to route.
+4. Run DRC: Inspect → Design Rules Checker → 0 violations.
+5. Re-export Gerbers: File → Fabrication Outputs → Gerbers.
+6. Re-zip and replace `fullScope_gerbers.zip`.
+
+## Other dimensions (confirmed safe)
+
+- Pin pitch: 2.54 mm (standard)
+- Row-to-row inside each header: 2.54 mm (standard dual-row)
 - Board size: 45 mm x 60 mm
 
-## NOT confirmed from datasheet — MEASURE THE REAL BOARD
-- Center-to-center distance BETWEEN J2 and J4 (across board width).
-  - Estimated ~38-43 mm (edge headers on a 45mm-wide board).
-  - **Measure with calipers before fabrication.** If off by >0.5mm the board will not seat.
+## After fix — order checklist
 
-Source: https://stm32-base.org/boards/STM32F407VGT6-diymore.html
+- [ ] J4 moved to X=138.1
+- [ ] DRC clean (0 violations)
+- [ ] Gerbers re-exported
+- [ ] Upload to JLCPCB/PCBWay and verify preview
+- [ ] Order
