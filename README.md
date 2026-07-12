@@ -4,6 +4,11 @@ A digital storage oscilloscope built from scratch on an STM32F407. This project 
 
 Currently running as a breadboard prototype with the V2 custom PCB shield designed and ready for fabrication.
 
+<div align="center">
+  <img src="assets/images/splash_readme.png" alt="Oscilite boot splash" width="400"/>
+  <p><i>The boot splash rendered on the 160×128 ST7735 TFT at power-on.</i></p>
+</div>
+
 ![Oscilite Breadboard Prototype](assets/images/img1.jpg)
 *The breadboard prototype running live firmware, capturing and displaying a waveform.*
 
