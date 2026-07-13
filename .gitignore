@@ -23,3 +23,7 @@ pcb/**/.history/
 
 # Claude session data
 .claude/
+__pycache__/
+auto_route_j4.py
+fix_traces.py
+shift_j4.py

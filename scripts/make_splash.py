@@ -72,18 +72,86 @@ def draw_grid(d):
 
 
 def builtin_mark(size=40):
-    """Phosphor sine-wave badge used when no logo.png is provided."""
+    """Hand-drawn oscilloscope logo — sine wave on graticule inside rounded badge."""
     import math
-    m = Image.new("RGB", (size, size), BG)
+
+    # Work at 4x then downsample for anti-aliased, crisp result
+    S = size * 4
+    m = Image.new("RGBA", (S, S), (0, 0, 0, 0))
     dd = ImageDraw.Draw(m)
-    dd.rounded_rectangle([1, 1, size - 2, size - 2], radius=8, outline=CYAN, width=2)
+    pad = S // 20  # border padding
+
+    # --- Background fill with rounded rect ---
+    dd.rounded_rectangle(
+        [pad, pad, S - pad, S - pad],
+        radius=S // 5, fill=BG, outline=CYAN, width=max(3, S // 40)
+    )
+
+    # --- Graticule grid (subtle) ---
+    inner_l = pad + S // 12
+    inner_r = S - pad - S // 12
+    inner_t = pad + S // 12
+    inner_b = S - pad - S // 12
+    grid_col = (30, 44, 58)
+    steps = 4
+    for i in range(steps + 1):
+        # vertical
+        x = inner_l + (inner_r - inner_l) * i / steps
+        dd.line([(x, inner_t), (x, inner_b)], fill=grid_col, width=max(1, S // 80))
+        # horizontal
+        y = inner_t + (inner_b - inner_t) * i / steps
+        dd.line([(inner_l, y), (inner_r, y)], fill=grid_col, width=max(1, S // 80))
+
+    # --- Center crosshair (slightly brighter) ---
+    cx = S // 2
+    cy = S // 2
+    cross_col = (45, 60, 80)
+    dd.line([(inner_l, cy), (inner_r, cy)], fill=cross_col, width=max(2, S // 60))
+    dd.line([(cx, inner_t), (cx, inner_b)], fill=cross_col, width=max(2, S // 60))
+
+    # --- Tick marks on center cross ---
+    tick_len = S // 40
+    tick_col = (55, 75, 95)
+    for i in range(steps * 5 + 1):
+        x = inner_l + (inner_r - inner_l) * i / (steps * 5)
+        dd.line([(x, cy - tick_len), (x, cy + tick_len)], fill=tick_col, width=max(1, S // 120))
+        y = inner_t + (inner_b - inner_t) * i / (steps * 5)
+        dd.line([(cx - tick_len, y), (cx + tick_len, y)], fill=tick_col, width=max(1, S // 120))
+
+    # --- Sine wave (phosphor green, glowing) ---
+    wave_l = inner_l + S // 20
+    wave_r = inner_r - S // 20
+    wave_cy = cy
+    amp = (inner_b - inner_t) * 0.32
+
+    # Glow layer (wider, dimmer)
+    glow_col = (20, 100, 8)
+    glow_pts = []
+    for px in range(wave_l, wave_r + 1):
+        t = (px - wave_l) / (wave_r - wave_l)
+        py = wave_cy - math.sin(t * 2.5 * math.pi) * amp
+        glow_pts.append((px, py))
+    dd.line(glow_pts, fill=glow_col, width=max(8, S // 16), joint="curve")
+
+    # Main wave
     pts = []
-    for px in range(4, size - 4):
-        t = (px - 4) / (size - 8)
-        py = size / 2 - math.sin(t * 2 * math.pi) * (size * 0.24)
+    for px in range(wave_l, wave_r + 1):
+        t = (px - wave_l) / (wave_r - wave_l)
+        py = wave_cy - math.sin(t * 2.5 * math.pi) * amp
         pts.append((px, py))
-    dd.line(pts, fill=GREEN, width=2, joint="curve")
-    return m
+    dd.line(pts, fill=GREEN, width=max(4, S // 28), joint="curve")
+
+    # Bright core (thinner, whiter green)
+    core_col = (140, 255, 100)
+    dd.line(pts, fill=core_col, width=max(2, S // 60), joint="curve")
+
+    # --- Downsample with high-quality filter ---
+    m = m.resize((size, size), Image.LANCZOS)
+
+    # Convert to RGB on BG
+    bg = Image.new("RGB", (size, size), BG)
+    bg.paste(m, mask=m.split()[3])
+    return bg
 
 
 def load_logo(target_h=42):
