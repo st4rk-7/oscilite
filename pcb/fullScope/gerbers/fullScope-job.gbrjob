@@ -5,7 +5,7 @@
       "Application": "Pcbnew",
       "Version": "10.0.4"
     },
-    "CreationDate": "2026-07-09T16:24:04+05:30"
+    "CreationDate": "2026-07-22T09:54:45+05:30"
   },
   "GeneralSpecs": {
     "ProjectId": {
@@ -32,47 +32,47 @@
   ],
   "FilesAttributes": [
     {
-      "Path": "fullScope-F_Cu.gbr",
+      "Path": "fullScope-F_Cu.gtl",
       "FileFunction": "Copper,L1,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "fullScope-B_Cu.gbr",
+      "Path": "fullScope-B_Cu.gbl",
       "FileFunction": "Copper,L2,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "fullScope-F_Paste.gbr",
+      "Path": "fullScope-F_Paste.gtp",
       "FileFunction": "SolderPaste,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "fullScope-B_Paste.gbr",
+      "Path": "fullScope-B_Paste.gbp",
       "FileFunction": "SolderPaste,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "fullScope-F_Silkscreen.gbr",
+      "Path": "fullScope-F_Silkscreen.gto",
       "FileFunction": "Legend,Top",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "fullScope-B_Silkscreen.gbr",
+      "Path": "fullScope-B_Silkscreen.gbo",
       "FileFunction": "Legend,Bot",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "fullScope-F_Mask.gbr",
+      "Path": "fullScope-F_Mask.gts",
       "FileFunction": "SolderMask,Top",
       "FilePolarity": "Negative"
     },
     {
-      "Path": "fullScope-B_Mask.gbr",
+      "Path": "fullScope-B_Mask.gbs",
       "FileFunction": "SolderMask,Bot",
       "FilePolarity": "Negative"
     },
     {
-      "Path": "fullScope-Edge_Cuts.gbr",
+      "Path": "fullScope-Edge_Cuts.gm1",
       "FileFunction": "Profile",
       "FilePolarity": "Positive"
     }

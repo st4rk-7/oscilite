@@ -1,4 +1,4 @@
-(pcb /home/st4rk/Projects/Oscilite/pcb/fullScope/fullScope.dsn
+(pcb pcb/fullScope/fullScope.dsn
   (parser
     (string_quote ")
     (space_in_quoted_tokens on)
@@ -77,7 +77,7 @@
       (place RV1 116000 -70000 front 0 (PN 500k))
     )
     (component Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical
-      (place J3 141000 -108000 front 0 (PN LCD))
+      (place J3 162000 -108000 front 0 (PN LCD))
     )
     (component "Package_TO_SOT_SMD:SOT-23"
       (place D1 128000 -56000 front 0 (PN BAT54S))

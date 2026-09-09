@@ -549,7 +549,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "gerbers2/",
       "specctra_dsn": "fullScope.dsn",
       "step": "",
       "vrml": ""
